@@ -13,7 +13,7 @@ const app = new App({
 })
 
 // Listens to incoming messages that contain "hello"
-app.message(/.*/, async ({ message, say }) => {
+app.message('hello', async ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   await say(`Hey there <@${message.user}>!`)
 });
