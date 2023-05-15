@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { App } = require('@slack/bolt');
+const { App } = require('@slack/bolt')
 
 // Set up tokens from .env
 const app = new App({
@@ -15,13 +15,12 @@ const app = new App({
 // Listens to incoming messages that contain "hello"
 app.message(/.*/, async ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
-  await say(`Hey there <@${message.user}>!`);
+  await say(`Hey there <@${message.user}>!`)
 });
-
 
 (async () => {
   // Start your app
-  await app.start(process.env.PORT || 3000);
+  await app.start(process.env.PORT || 3000)
 
-  console.log('⚡️ Bolt app is running!');
-})();
+  console.log('⚡️ Bolt app is running!')
+})()
