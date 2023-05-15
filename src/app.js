@@ -1,24 +1,19 @@
+require('dotenv').config()
 const { App } = require('@slack/bolt');
-const config = require('dotenv').config()
-
 
 // Set up tokens from .env
 const app = new App({
-  token: config.
-  parsed.SLACK_BOT_TOKEN,
-  signingSecret: config.parsed.SLACK_SIGNING_SECRET,
-  slackAppToken: config.parsed.SLACK_APP_TOKEN,
+  token: process.env.SLACK_BOT_TOKEN,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  slackAppToken: process.env.SLACK_APP_TOKEN,
 
   // Local Config
-  socketMode: config.parsed.SOCKET_MODE || true,
-  port: config.parsed.PORT || 3000   
-});
-
-app.use(receiver.app);
-app.use(express.json());
+  socketMode: process.env.SOCKET_MODE || true,
+  port: process.env.PORT || 3000
+})
 
 // Listens to incoming messages that contain "hello"
-app.message('hello', async ({ message, say }) => {
+app.message(/.*/, async ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   await say(`Hey there <@${message.user}>!`);
 });
